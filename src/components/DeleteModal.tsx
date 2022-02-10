@@ -1,6 +1,5 @@
-import { Dispatch, FC, SetStateAction } from 'react'
-
-import { TDeleteUser } from 'components/UserList'
+import { Dispatch, FC, SetStateAction, useEffect } from 'react'
+import { TDeleteUser, useDeleteUserMutation } from 'api'
 
 interface IProps {
 	deleteUser: TDeleteUser
@@ -8,6 +7,12 @@ interface IProps {
 }
 
 const DeleteModal: FC<IProps> = ({ deleteUser, setDeleteUser }) => {
+	const [handleDeleteUser, { isSuccess, isUninitialized }] = useDeleteUserMutation()
+
+	useEffect(() => {
+		if (isSuccess && !isUninitialized) setDeleteUser(null)
+	}, [isSuccess, isUninitialized, setDeleteUser])
+
 	return (
 		<div className='delete-modal-wrapper'>
 			<div className='delete-modal'>
@@ -21,7 +26,9 @@ const DeleteModal: FC<IProps> = ({ deleteUser, setDeleteUser }) => {
 					<button onClick={() => setDeleteUser(null)} className='cancel'>
 						Cancel
 					</button>
-					<button className='delete'>Delete</button>
+					<button onClick={() => handleDeleteUser(deleteUser.id)} className='delete'>
+						Delete
+					</button>
 				</div>
 			</div>
 		</div>

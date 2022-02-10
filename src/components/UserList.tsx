@@ -1,12 +1,10 @@
 import { CellProps, Column, useSortBy, useTable } from 'react-table'
-import { IUser, useGetUsersQuery } from 'api'
+import { IUser, TDeleteUser, useGetUsersQuery } from 'api'
 import { useMemo, useState } from 'react'
 
 import DeleteModal from 'components/DeleteModal'
 import Loader from 'components/Loader'
 import { useNavigate } from 'react-router-dom'
-
-export type TDeleteUser = Pick<IUser, 'id' | 'name'>
 
 const UserList = () => {
 	const [deleteUser, setDeleteUser] = useState<TDeleteUser | null>(null)

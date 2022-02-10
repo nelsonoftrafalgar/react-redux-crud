@@ -1,13 +1,14 @@
-import { IUser, useGetUsersQuery } from 'api'
+import { IUser, TUserFormData, useGetUsersQuery, useUpdateUserMutation } from 'api'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 const EditUser = () => {
+	const [updateUser, { isUninitialized, isSuccess }] = useUpdateUserMutation()
 	const navigate = useNavigate()
 	const params = useParams()
-	const { register, handleSubmit, reset } = useForm()
+	const { register, handleSubmit, reset } = useForm<TUserFormData>()
 	const { user } = useGetUsersQuery(undefined, {
 		selectFromResult: ({ data }) => ({
 			user: data?.find((user: IUser) => user.id.toString() === params?.id),
@@ -21,7 +22,13 @@ const EditUser = () => {
 		}
 	}, [user, reset])
 
-	const onSubmit = (data: any) => console.log(data)
+	const onSubmit = (data: TUserFormData) => {
+		updateUser({ ...data, id: params.id! })
+	}
+
+	useEffect(() => {
+		if (isSuccess && !isUninitialized) navigate('/')
+	}, [isSuccess, isUninitialized, navigate])
 
 	return (
 		<div className='edit-user-wrapper'>
