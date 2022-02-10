@@ -12,38 +12,38 @@
 
 .delete-modal {
 	min-width: 400px;
-	background: #fff;
-	border-radius: 5px;
+	background: $white;
+	border-radius: $border-radius;
 }
 
 .delete-modal-header {
-	padding: 20px;
-	border-bottom: 1px solid #a8a6a6;
+	padding: $master-padding;
+	border-bottom: 1px solid $grey;
 }
 
 .delete-modal-text {
-	padding: 20px;
+	padding: $master-padding;
 }
 
 .delete-modal-buttons {
-	padding: 20px;
+	padding: $master-padding;
 	display: flex;
 	justify-content: right;
-	border-top: 1px solid #a8a6a6;
+	border-top: 1px solid $grey;
 
 	.cancel {
-		background: #7d7d7d;
-		color: #fff;
-		padding: 5px 20px;
-		border-radius: 5px;
+		background: $dark-grey;
+		color: $white;
+		padding: $button-padding;
+		border-radius: $border-radius;
 		cursor: pointer;
 	}
 
 	.delete {
-		background: #e8241a;
-		color: #fff;
-		padding: 5px 20px;
-		border-radius: 5px;
+		background: $red;
+		color: $white;
+		padding: $button-padding;
+		border-radius: $border-radius;
 		margin-left: 10px;
 		cursor: pointer;
 	}

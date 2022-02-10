@@ -112,6 +112,7 @@ const UserList = () => {
 							})}
 						</tbody>
 					</table>
+					{!data.length && <p className='empty-user-list'>{dictionary.userList.emptyList}</p>}
 				</div>
 				{deleteUser && <DeleteModal deleteUser={deleteUser} setDeleteUser={setDeleteUser} />}
 			</div>

@@ -50,5 +50,6 @@ export const dictionary = {
 		addNew: 'Add new',
 		editButton: 'edit',
 		deleteButton: 'delete',
+		emptyList: 'Empty list',
 	},
 }
