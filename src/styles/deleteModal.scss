@@ -1,0 +1,50 @@
+.delete-modal-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: rgba(0, 0, 0, 0.75);
+}
+
+.delete-modal {
+	min-width: 400px;
+	background: #fff;
+	border-radius: 5px;
+}
+
+.delete-modal-header {
+	padding: 20px;
+	border-bottom: 1px solid #a8a6a6;
+}
+
+.delete-modal-text {
+	padding: 20px;
+}
+
+.delete-modal-buttons {
+	padding: 20px;
+	display: flex;
+	justify-content: right;
+	border-top: 1px solid #a8a6a6;
+
+	.cancel {
+		background: #7d7d7d;
+		color: #fff;
+		padding: 5px 20px;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+
+	.delete {
+		background: #e8241a;
+		color: #fff;
+		padding: 5px 20px;
+		border-radius: 5px;
+		margin-left: 10px;
+		cursor: pointer;
+	}
+}
