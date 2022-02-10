@@ -1,14 +1,22 @@
 import { IUser, TUserFormData, useGetUsersQuery, useUpdateUserMutation } from 'api'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import Input from 'components/Input'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { validationSchema } from 'validationSchema'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 const EditUser = () => {
 	const [updateUser, { isUninitialized, isSuccess }] = useUpdateUserMutation()
 	const navigate = useNavigate()
 	const params = useParams()
-	const { register, handleSubmit, reset } = useForm<TUserFormData>()
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors },
+	} = useForm<TUserFormData>({ resolver: yupResolver(validationSchema) })
 	const { user } = useGetUsersQuery(undefined, {
 		selectFromResult: ({ data }) => ({
 			user: data?.find((user: IUser) => user.id.toString() === params?.id),
@@ -31,30 +39,22 @@ const EditUser = () => {
 	}, [isSuccess, isUninitialized, navigate])
 
 	return (
-		<div className='edit-user-wrapper'>
-			<div className='edit-user-header'>
+		<div className='form-wrapper'>
+			<div className='form-header'>
 				<h2>Edit Form</h2>
 			</div>
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<div className='edit-user-form'>
-					<label className='edit-user-label'>
-						Name:
-						<input {...register('name')} />
-					</label>
-					<label className='edit-user-label'>
-						Username:
-						<input {...register('username')} />
-					</label>
-					<label className='edit-user-label'>
-						Email:
-						<input {...register('email')} />
-					</label>
-					<label className='edit-user-label'>
-						City:
-						<input {...register('city')} />
-					</label>
+				<div className='form'>
+					<Input error={errors.name?.message} label={'Name:'} props={{ ...register('name') }} />
+					<Input
+						error={errors.username?.message}
+						label={'Userame:'}
+						props={{ ...register('username') }}
+					/>
+					<Input error={errors.email?.message} label={'Email:'} props={{ ...register('email') }} />
+					<Input error={errors.city?.message} label={'City:'} props={{ ...register('city') }} />
 				</div>
-				<div className='edit-user-buttons'>
+				<div className='form-buttons'>
 					<button onClick={() => navigate('/')} className='cancel'>
 						Cancel
 					</button>
