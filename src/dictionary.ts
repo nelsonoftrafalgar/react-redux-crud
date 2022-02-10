@@ -1,4 +1,12 @@
 export const dictionary = {
+	app: {
+		header: 'Dashboard',
+		loading: 'Loading...',
+	},
+	error: {
+		header: 'Something went wrong on the server :(',
+		link: 'Please go to home page',
+	},
 	deleteModal: {
 		header: 'Delete',
 		message: 'Do you want to delete user: ',

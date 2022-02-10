@@ -3,14 +3,14 @@ import { IUser, TDeleteUser, useGetUsersQuery } from 'api'
 import { useMemo, useState } from 'react'
 
 import DeleteModal from 'components/DeleteModal'
-import Loader from 'components/Loader'
+import FlowManager from 'components/FlowManager'
 import { dictionary } from 'dictionary'
 import { useNavigate } from 'react-router-dom'
 
 const UserList = () => {
 	const [deleteUser, setDeleteUser] = useState<TDeleteUser | null>(null)
 	const navigate = useNavigate()
-	const { data: users, isLoading } = useGetUsersQuery()
+	const { data: users, isLoading, isError } = useGetUsersQuery()
 	const data = useMemo(() => users || [], [users])
 	const columns = useMemo<Column<IUser>[]>(() => {
 		return [
@@ -78,46 +78,44 @@ const UserList = () => {
 		useSortBy
 	)
 
-	if (isLoading) {
-		return <Loader />
-	}
-
 	return (
-		<div className='user-list-wrapper'>
-			<div className='user-list-header'>
-				<h2>{dictionary.userList.header}</h2>
-				<button onClick={() => navigate('/add')}>{dictionary.userList.addNew}</button>
-			</div>
-			<div className='user-list-table-wrapper'>
-				<table {...getTableProps()}>
-					<thead>
-						{headerGroups.map((headerGroup) => (
-							<tr {...headerGroup.getHeaderGroupProps()}>
-								{headerGroup.headers.map((column) => (
-									<th {...column.getHeaderProps(column.getSortByToggleProps())}>
-										{column.render('Header')}
-										<span>{column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}</span>
-									</th>
-								))}
-							</tr>
-						))}
-					</thead>
-					<tbody {...getTableBodyProps()}>
-						{rows.map((row) => {
-							prepareRow(row)
-							return (
-								<tr {...row.getRowProps()}>
-									{row.cells.map((cell) => {
-										return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-									})}
+		<FlowManager goToError={isError} showLoader={isLoading}>
+			<div className='user-list-wrapper'>
+				<div className='user-list-header'>
+					<h2>{dictionary.userList.header}</h2>
+					<button onClick={() => navigate('/add')}>{dictionary.userList.addNew}</button>
+				</div>
+				<div className='user-list-table-wrapper'>
+					<table {...getTableProps()}>
+						<thead>
+							{headerGroups.map((headerGroup) => (
+								<tr {...headerGroup.getHeaderGroupProps()}>
+									{headerGroup.headers.map((column) => (
+										<th {...column.getHeaderProps(column.getSortByToggleProps())}>
+											{column.render('Header')}
+											<span>{column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}</span>
+										</th>
+									))}
 								</tr>
-							)
-						})}
-					</tbody>
-				</table>
+							))}
+						</thead>
+						<tbody {...getTableBodyProps()}>
+							{rows.map((row) => {
+								prepareRow(row)
+								return (
+									<tr {...row.getRowProps()}>
+										{row.cells.map((cell) => {
+											return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+										})}
+									</tr>
+								)
+							})}
+						</tbody>
+					</table>
+				</div>
+				{deleteUser && <DeleteModal deleteUser={deleteUser} setDeleteUser={setDeleteUser} />}
 			</div>
-			{deleteUser && <DeleteModal deleteUser={deleteUser} setDeleteUser={setDeleteUser} />}
-		</div>
+		</FlowManager>
 	)
 }
 

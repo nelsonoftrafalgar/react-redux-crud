@@ -1,0 +1,16 @@
+.error-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.error-message {
+	text-align: center;
+}
+
+.error-link {
+	margin-top: 20px;
+	text-decoration: none;
+	color: #777;
+}
