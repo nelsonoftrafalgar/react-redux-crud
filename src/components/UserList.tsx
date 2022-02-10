@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react'
 
 import DeleteModal from 'components/DeleteModal'
 import Loader from 'components/Loader'
+import { dictionary } from 'dictionary'
 import { useNavigate } from 'react-router-dom'
 
 const UserList = () => {
@@ -14,32 +15,32 @@ const UserList = () => {
 	const columns = useMemo<Column<IUser>[]>(() => {
 		return [
 			{
-				Header: 'Id',
+				Header: dictionary.userList.id,
 				accessor: 'id',
 				disableSortBy: true,
 			},
 			{
-				Header: 'Name',
+				Header: dictionary.userList.name,
 				accessor: 'name',
 				disableSortBy: true,
 			},
 			{
-				Header: 'Username',
+				Header: dictionary.userList.username,
 				accessor: 'username',
 				disableFilters: true,
 			},
 			{
-				Header: 'Email',
+				Header: dictionary.userList.email,
 				accessor: 'email',
 				disableSortBy: true,
 			},
 			{
-				Header: 'City',
+				Header: dictionary.userList.city,
 				accessor: 'city',
 				disableSortBy: true,
 			},
 			{
-				Header: 'Edit',
+				Header: dictionary.userList.edit,
 				disableSortBy: true,
 				Cell: ({
 					row: {
@@ -47,12 +48,12 @@ const UserList = () => {
 					},
 				}: CellProps<IUser>) => (
 					<button className='edit-user-button' onClick={() => navigate(`/edit/${id}`)}>
-						edit
+						{dictionary.userList.editButton}
 					</button>
 				),
 			},
 			{
-				Header: 'Delete',
+				Header: dictionary.userList.delete,
 				disableSortBy: true,
 				Cell: ({
 					row: {
@@ -61,7 +62,7 @@ const UserList = () => {
 				}: CellProps<IUser>) => {
 					return (
 						<button className='delete-user-button' onClick={() => setDeleteUser({ id, name })}>
-							delete
+							{dictionary.userList.deleteButton}
 						</button>
 					)
 				},
@@ -84,8 +85,8 @@ const UserList = () => {
 	return (
 		<div className='user-list-wrapper'>
 			<div className='user-list-header'>
-				<h2>User List</h2>
-				<button onClick={() => navigate('/add')}>Add new</button>
+				<h2>{dictionary.userList.header}</h2>
+				<button onClick={() => navigate('/add')}>{dictionary.userList.addNew}</button>
 			</div>
 			<div className='user-list-table-wrapper'>
 				<table {...getTableProps()}>

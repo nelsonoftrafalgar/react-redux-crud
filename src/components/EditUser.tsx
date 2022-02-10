@@ -2,6 +2,7 @@ import { IUser, TUserFormData, useGetUsersQuery, useUpdateUserMutation } from 'a
 import { useNavigate, useParams } from 'react-router-dom'
 
 import Input from 'components/Input'
+import { dictionary } from 'dictionary'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { validationSchema } from 'validationSchema'
@@ -41,25 +42,37 @@ const EditUser = () => {
 	return (
 		<div className='form-wrapper'>
 			<div className='form-header'>
-				<h2>Edit Form</h2>
+				<h2>{dictionary.editForm.header}</h2>
 			</div>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div className='form'>
-					<Input error={errors.name?.message} label={'Name:'} props={{ ...register('name') }} />
+					<Input
+						error={errors.name?.message}
+						label={dictionary.form.labels.name}
+						props={{ ...register('name') }}
+					/>
 					<Input
 						error={errors.username?.message}
-						label={'Userame:'}
+						label={dictionary.form.labels.username}
 						props={{ ...register('username') }}
 					/>
-					<Input error={errors.email?.message} label={'Email:'} props={{ ...register('email') }} />
-					<Input error={errors.city?.message} label={'City:'} props={{ ...register('city') }} />
+					<Input
+						error={errors.email?.message}
+						label={dictionary.form.labels.email}
+						props={{ ...register('email') }}
+					/>
+					<Input
+						error={errors.city?.message}
+						label={dictionary.form.labels.city}
+						props={{ ...register('city') }}
+					/>
 				</div>
 				<div className='form-buttons'>
 					<button onClick={() => navigate('/')} className='cancel'>
-						Cancel
+						{dictionary.editForm.cancel}
 					</button>
 					<button type='submit' className='submit'>
-						Submit
+						{dictionary.editForm.submit}
 					</button>
 				</div>
 			</form>

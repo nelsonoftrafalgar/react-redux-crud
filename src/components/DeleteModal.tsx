@@ -1,6 +1,8 @@
 import { Dispatch, FC, SetStateAction, useEffect } from 'react'
 import { TDeleteUser, useDeleteUserMutation } from 'api'
 
+import { dictionary } from 'dictionary'
+
 interface IProps {
 	deleteUser: TDeleteUser
 	setDeleteUser: Dispatch<SetStateAction<TDeleteUser | null>>
@@ -17,17 +19,20 @@ const DeleteModal: FC<IProps> = ({ deleteUser, setDeleteUser }) => {
 		<div className='delete-modal-wrapper'>
 			<div className='delete-modal'>
 				<div className='delete-modal-header'>
-					<h2>Delete</h2>
+					<h2>{dictionary.deleteModal.header}</h2>
 				</div>
 				<div className='delete-modal-text'>
-					<p>Do you want to delete user: {deleteUser.name}?</p>
+					<p>
+						{dictionary.deleteModal.message}
+						{deleteUser.name}?
+					</p>
 				</div>
 				<div className='delete-modal-buttons'>
 					<button onClick={() => setDeleteUser(null)} className='cancel'>
-						Cancel
+						{dictionary.deleteModal.cancel}
 					</button>
 					<button onClick={() => handleDeleteUser(deleteUser.id)} className='delete'>
-						Delete
+						{dictionary.deleteModal.delete}
 					</button>
 				</div>
 			</div>
