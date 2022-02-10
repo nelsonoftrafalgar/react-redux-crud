@@ -11,9 +11,12 @@
 }
 
 .delete-modal {
-	min-width: 400px;
 	background: $white;
 	border-radius: $border-radius;
+
+	@media screen and (min-width: $breakpoint-lg) {
+		min-width: 400px;
+	}
 }
 
 .delete-modal-header {

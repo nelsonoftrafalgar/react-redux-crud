@@ -32,19 +32,33 @@
 	}
 
 	th {
-		padding: 15px;
+		padding: 10px;
 		background: $light-grey;
 		text-align: left;
 		font-weight: 400;
+
+		@media screen and (min-width: $breakpoint-lg) {
+			padding: 15px;
+		}
 	}
 
 	td {
 		text-align: left;
-		padding: 15px;
+		padding: 10px;
+
+		@media screen and (min-width: $breakpoint-lg) {
+			padding: 15px;
+		}
 	}
 
 	tr {
 		border-bottom: 1px solid $light-grey;
+		display: flex;
+		flex-direction: column;
+
+		@media screen and (min-width: $breakpoint-lg) {
+			display: table-row;
+		}
 	}
 }
 
