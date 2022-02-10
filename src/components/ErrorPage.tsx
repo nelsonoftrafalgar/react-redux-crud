@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { dictionary } from 'dictionary'
+import { dictionary } from 'utils/dictionary'
 
 const ErrorPage = () => {
 	return (

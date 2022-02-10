@@ -1,10 +1,8 @@
 import 'styles/index.scss'
 
-// import { store } from './app/store';
-// import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker'
 
-import { API } from 'api'
+import { API } from 'utils/api'
 import { ApiProvider } from '@reduxjs/toolkit/query/react'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
@@ -13,12 +11,10 @@ import ReactDOM from 'react-dom'
 
 ReactDOM.render(
 	<React.StrictMode>
-		{/* <Provider store={store}> */}
 		<BrowserRouter>
 			<ApiProvider api={API}>
 				<App />
 			</ApiProvider>
-			{/* </Provider> */}
 		</BrowserRouter>
 	</React.StrictMode>,
 	document.getElementById('root')

@@ -4,7 +4,7 @@ import AddUser from 'components/AddUser'
 import EditUser from 'components/EditUser'
 import ErrorPage from 'components/ErrorPage'
 import UserList from 'components/UserList'
-import { dictionary } from 'dictionary'
+import { dictionary } from 'utils/dictionary'
 
 function App() {
 	return (

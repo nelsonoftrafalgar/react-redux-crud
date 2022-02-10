@@ -1,9 +1,9 @@
 import { Dispatch, FC, SetStateAction, useEffect } from 'react'
-import { TDeleteUser, useDeleteUserMutation } from 'api'
+import { TDeleteUser, useDeleteUserMutation } from 'utils/api'
 
 import FlowManager from 'components/FlowManager'
 import Loader from 'components/Loader'
-import { dictionary } from 'dictionary'
+import { dictionary } from 'utils/dictionary'
 
 interface IProps {
 	deleteUser: TDeleteUser

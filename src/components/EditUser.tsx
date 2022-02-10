@@ -1,12 +1,12 @@
-import { IUser, TUserFormData, useGetUsersQuery, useUpdateUserMutation } from 'api'
+import { IUser, TUserFormData, useGetUsersQuery, useUpdateUserMutation } from 'utils/api'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import FlowManager from 'components/FlowManager'
 import Input from 'components/Input'
-import { dictionary } from 'dictionary'
+import { dictionary } from 'utils/dictionary'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { validationSchema } from 'validationSchema'
+import { validationSchema } from 'utils/validationSchema'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 const EditUser = () => {

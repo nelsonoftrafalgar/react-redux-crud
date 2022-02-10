@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-import { dictionary } from 'dictionary'
+import { dictionary } from 'utils/dictionary'
 
 const EMAIL_CONSTRAIN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const TEXT_CONSTRAIN = /^[A-Za-z\s]+$/

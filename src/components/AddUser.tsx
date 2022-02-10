@@ -1,11 +1,11 @@
-import { TUserFormData, useCreateUserMutation } from 'api'
+import { TUserFormData, useCreateUserMutation } from 'utils/api'
 
 import FlowManager from 'components/FlowManager'
 import Input from 'components/Input'
-import { dictionary } from 'dictionary'
+import { dictionary } from 'utils/dictionary'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { validationSchema } from 'validationSchema'
+import { validationSchema } from 'utils/validationSchema'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 const AddUser = () => {

@@ -1,10 +1,10 @@
 import { CellProps, Column, useSortBy, useTable } from 'react-table'
-import { IUser, TDeleteUser, useGetUsersQuery } from 'api'
+import { IUser, TDeleteUser, useGetUsersQuery } from 'utils/api'
 import { useMemo, useState } from 'react'
 
 import DeleteModal from 'components/DeleteModal'
 import FlowManager from 'components/FlowManager'
-import { dictionary } from 'dictionary'
+import { dictionary } from 'utils/dictionary'
 import { useNavigate } from 'react-router-dom'
 
 const UserList = () => {
