@@ -16,7 +16,7 @@ type TUpdateUserData = Omit<IUser, 'created_at' | 'updated_at'>
 
 export const API = createApi({
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'http://localhost:8080/api',
+		baseUrl: process.env.REACT_APP_API_URL,
 	}),
 	tagTypes: ['User'],
 	endpoints: (build) => ({
